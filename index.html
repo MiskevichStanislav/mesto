@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="pages/index.css">
+      <title>Mesto Russia</title>
+   </head>
+   <body class="page">
+      <header class="header">
+         <a class="header__logo-link" href="#">
+         <img src="../mesto/images/logo-white.svg" alt="Лого место России">
+         </a>
+      </header>
+      <main class="content">
+         <div class="profile">
+            <div class="profile__id">
+               <div class="profile__id-photo"></div>
+               <div class="profile__id-information">
+                  <div class="profile__personality">
+                     <div class="profile__id-name">Никнейм</div>
+                     <button class="profile__button-edit"></button>
+                  </div>
+                  <div class="profile__id-family">Описание пользователя</div>
+               </div>
+            </div>
+            <button class="profile__button-add"></button>
+         </div>
+         <div class="pictures">
+             <div class="pictures__board">
+            <div class="pictures__item">
+               <img class="pictures__images" src="./images/image1.jpg" alt="Карачаевск">
+               <div class="pictures__description">
+                  <p class="pictures__title">Карачаевск</p>
+                  <button class="pictures__like"></button>
+               </div>
+            </div>
+            <div class="pictures__item">
+               <img class="pictures__images" src="./images/image2.jpg" alt="Эльбрус">
+               <div class="pictures__description">
+                  <p class="pictures__title">Гора Эльбрус</p>
+                  <button class="pictures__like"></button>
+               </div>
+            </div>
+            <div class="pictures__item">
+               <img class="pictures__images" src="./images/image3.jpg" alt="Домбай">
+               <div class="pictures__description">
+                  <p class="pictures__title">Домбай</p>
+                  <button class="pictures__like"></button>
+               </div>
+            </div>
+            <div class="pictures__item">
+               <img class="pictures__images" src="./images/image4.jpg" alt="Гора Эльбрус">
+               <div class="pictures__description">
+                  <p class="pictures__title">Гора Эльбрус</p>
+                  <button class="pictures__like"></button>
+               </div>
+            </div>
+            <div class="pictures__item">
+               <img class="pictures__images" src="./images/image5.jpg" alt="Домбай">
+               <div class="pictures__description">
+                  <p class="pictures__title">Домбай</p>
+                  <button class="pictures__like"></button>
+               </div>
+            </div>
+            <div class="pictures__item">
+               <img class="pictures__images" src="./images/image6.jpg" alt="Карачаево-Черкессия">
+               <div class="pictures__description">
+                  <p class="pictures__title">Карачаево-Черкессия</p>
+                  <button class="pictures__like"></button>
+               </div>
+            </div>
+         </div>
+         </div>
+      </main>
+      <footer class="footer">
+         <p class="footer__copyright">&copy;2022 Mesto Russia</p>
+      </footer>
+      <section class="popup">
+         <div class="popup__container">
+            <button class="popup__close"></button>
+            <h2 class="popup__title">Редактировать профиль</h2>
+            <form class="popup__form">
+               <input class="popup__input popup__input-name" type="text" value="Напишите ваше имя">
+               <input class="popup__input popup__input-job" type="text" value="Расскажите о себе">
+               <button class="popup__button">Сохранить</button>
+            </form>
+         </div>
+      </section>
+      <script src="../../mesto/scripts/script.js"></script>
+   </body>
+</html>

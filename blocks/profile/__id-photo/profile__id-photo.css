@@ -1,0 +1,15 @@
+.profile__id-photo {
+    background-image: url(../../../images/photo-link.jpg);
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    background-size: cover;
+    margin: 0 30px 0 0;
+}
+
+@media (min-width: 320px) and (max-width: 768px) {
+    .profile__id-photo {
+        margin-right: 0;
+        margin-bottom: 26px;
+    }
+}
