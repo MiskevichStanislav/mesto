@@ -33,11 +33,11 @@ function formSubmitHandler (evt) {
     // Получите значение полей jobInput и nameInput из свойства value
 
 
-let title = document.querySelector('.profile__id-title');
+let title = document.querySelector('.profile__id-name');
 // console.log(title .textContent); // "Это текст внутри элемента."
 title .textContent = nameInput.value; // можно перезаписать содержимое
 
-let subtitle = document.querySelector('.profile__id-subtitle');
+let subtitle = document.querySelector('.profile__id-family');
 // console.log(subtitle.textContent); // "Это текст внутри элемента."
 subtitle.textContent = jobInput.value; // можно перезаписать содержимое
 
