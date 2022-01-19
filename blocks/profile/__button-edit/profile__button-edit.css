@@ -18,7 +18,7 @@
 
 @media (max-width:320px) and (max-width:768px) {
 	.profile__button-edit {
-		min-width: 18px;
+		min-width: 17px;
 		align-self: center;
 	}
 }

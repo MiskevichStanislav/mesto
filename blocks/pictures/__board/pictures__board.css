@@ -28,7 +28,7 @@
 
 @media (min-width: 320px) and (max-width: 468px) {
 	.pictures__board {
-		grid-template-columns: repeat(1, 1fr);
+		grid-template-columns: repeat(1, 282px);
 		grid-gap: 20px;
 		max-width: calc(100% - 38px);
 	}
