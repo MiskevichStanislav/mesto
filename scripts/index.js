@@ -6,8 +6,6 @@ const closePopupButton = document.querySelector('.popup__close');
 
 function openPopup() {
     popup.classList.add('popup__open');
-    nameInput.value = name.textContent;
-    jobInput.value = family.textContent;
 }
 
 function closePopup() {
