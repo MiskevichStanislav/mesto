@@ -1,4 +1,4 @@
-.profile__id-family {
+.profile__id-subtitle {
 	font-family: Inter, Arial, sans-serif;
 	font-style: normal;
 	font-weight: normal;
@@ -11,7 +11,8 @@
 }
 
 @media (min-width: 320px) and (max-width: 768px) {
-	.profile__id-family {
+	.profile__id-subtitle {
+		max-width: 189px;
 		font-size: 14px;
 		line-height: 17px;
 	}

@@ -7,5 +7,6 @@
 @media (min-width: 320px) and (max-width: 768px) {
 	.profile__personality {
 		justify-content: center;
+		margin-bottom: 14px;
 	}
 }

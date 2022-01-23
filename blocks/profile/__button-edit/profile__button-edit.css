@@ -6,7 +6,7 @@
 	background-size: contain;
 	min-width: 24px;
 	height: 24px;
-	background-color: #000;
+	background-color: rgba(117, 190, 218, 0.0);
 	border: none;
 	transition: opacity .3s ease-in;
 	margin-left: 18px;
@@ -18,7 +18,8 @@
 
 @media (max-width:320px) and (max-width:768px) {
 	.profile__button-edit {
-		min-width: 17px;
-		align-self: center;
+		width: 18px;
+		height: 17px;
+		margin-left: 10px;
 	}
 }
