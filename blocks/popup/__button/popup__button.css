@@ -9,7 +9,7 @@
 	line-height: 22px;
 	text-align: center;
 	height: 50px;
-	margin-top: 18px;
+	margin-top: 48px;
 	border: none;
 	border-radius: 2px;
 	cursor: pointer;
@@ -21,7 +21,7 @@
 	opacity: 0.8;
 }
 
-@media (min-width: 320px) and (max-width: 468px) {
+@media screen (max-width: 468px) {
 	.popup__button {
 		height: 46px;
 		margin: 45px 0 0;
