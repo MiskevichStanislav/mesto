@@ -28,66 +28,57 @@
             <button class="profile__button-add" type="button"></button>
          </section>
          <section class="pictures">
-             <div class="pictures__board">
-            <div class="pictures__item">
-               <img class="pictures__images" src="./images/image1.png" alt="Карачаевск">
-               <div class="pictures__description">
-                  <h2 class="pictures__title">Карачаевск</h2>
-                  <button class="pictures__like" type="button"></button>
-               </div>
-            </div>
-            <div class="pictures__item">
-               <img class="pictures__images" src="./images/image2.png" alt="Эльбрус">
-               <div class="pictures__description">
-                  <h2 class="pictures__title">Гора Эльбрус</h2>
-                  <button class="pictures__like" type="button"></button>
-               </div>
-            </div>
-            <div class="pictures__item">
-               <img class="pictures__images" src="./images/image3.png" alt="Домбай">
-               <div class="pictures__description">
-                  <h2 class="pictures__title">Домбай</h2>
-                  <button class="pictures__like" type="button"></button>
-               </div>
-            </div>
-            <div class="pictures__item">
-               <img class="pictures__images" src="./images/image4.png" alt="Гора Эльбрус">
-               <div class="pictures__description">
-                  <h2 class="pictures__title">Гора Эльбрус</h2>
-                  <button class="pictures__like" type="button"></button>
-               </div>
-            </div>
-            <div class="pictures__item">
-               <img class="pictures__images" src="./images/image5.png" alt="Домбай">
-               <div class="pictures__description">
-                  <h2 class="pictures__title">Домбай</h2>
-                  <button class="pictures__like" type="button"></button>
-               </div>
-            </div>
-            <div class="pictures__item">
-               <img class="pictures__images" src="./images/image6.jpg" alt="Карачаево-Черкессия">
-               <div class="pictures__description">
-                  <h2 class="pictures__title">Карачаево-Черкессия</h2>
-                  <button class="pictures__like" type="button"></button>
-               </div>
-            </div>
-         </div>
+             <div class="pictures__board"></div>
          </section>
+
       </main>
+
       <footer class="footer">
          <p class="footer__copyright">&copy;2022 Mesto Russia</p>
       </footer>
-      <section class="popup">
+
+      <section class="popup popup_edit">
          <div class="popup__container">
             <button class="popup__close" type="button"></button>
             <h2 class="popup__title">Редактировать профиль</h2>
             <form class="popup__form" name="form">
-               <input class="popup__input popup__input_type_name" value="Напишите ваше имя"  type="text" name="name">
-               <input class="popup__input popup__input_type_job" value="Расскажите о себе"  type="text" name="job">
+               <input class="popup__input popup__input-name" value="Напишите ваше имя"  type="text">
+               <input class="popup__input popup__input-detail" value="Расскажите о себе"  type="text">
                <button class="popup__button" type="submit">Сохранить</button>
             </form>
          </div>
       </section>
+
+      <section class="popup popup_add">
+         <div class="popup__container">
+            <button class="popup__close popup__close_add" type="button"></button>
+            <h2 class="popup__title">Добавление фотографии</h2>
+            <form class="popup__form popup__form_add" name="form">
+               <input class="popup__input popup__input_card-name" type="text" placeholder="Как называется ваше место">
+               <input class="popup__input popup__input-link" type="text" name="link" placeholder="Ссылка на фотографию">
+               <button class="popup__button popup__button_card" type="submit">Сохранить</button>
+            </form>
+         </div>
+      </section>
+      <section class="popup popup_picture">
+         <div class="popup__picture-open">
+            <button class="popup__close popup__close_pic" type="button"></button>
+            <img class="popup__photo" alt="Фотографии">
+            <p class="popup__photo-title"></p>
+         </div>
+      </section>
+
+      <template class="cards">
+         <li class="pictures__item">
+            <button class="pictures__delete" type="button" aria-label="Удалить"></button>
+            <img class="pictures__images" src="#" alt="Фотографии">
+            <div class="pictures__description">
+               <h2 class="pictures__title"></h2>
+               <button class="pictures__like" type="button"></button>
+            </div>
+         </li>
+      </template>
+
       <script src="./scripts/index.js"></script>
    </body>
 </html>

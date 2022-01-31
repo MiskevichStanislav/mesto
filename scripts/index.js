@@ -2,40 +2,169 @@
 
 const openEditButtonPopup = document.querySelector('.profile__button-edit');
 const popup = document.querySelector('.popup');
+const popupEdit = document.querySelector('.popup_edit');
 const closePopupButton = document.querySelector('.popup__close');
+const openAddButtonPopup = document.querySelector('.profile__button-add');
+const popupAdd = document.querySelector('.popup_add');
+const closePopupButtonAdd = document.querySelector('.popup__close_add');
+const popupPic = document.querySelector('.popup_picture');
+const popupPicClose = document.querySelector('.popup_picture');
+const closePopupButtonPic = document.querySelector('.popup__close_pic');
+
+const formElement = document.querySelector('.popup__form');
+const nameInput = document.querySelector('.popup__input-name'); 
+const detailInput = document.querySelector('.popup__input-detail'); 
+const title = document.querySelector('.profile__id-title');
+const subtitle = document.querySelector('.profile__id-subtitle');
 
 
-
-function openPopup() {
+//Отрываем PopUp
+function openPopup(popup) {
     popup.classList.add('popup_open');
-    nameInput.value = title.textContent;
-    jobInput.value = subtitle.textContent;
 }
-
-function closePopup() {
+//Закрываем PopUp
+function closePopup(popup) {
 popup.classList.remove('popup_open');
+}
+//Редактирование профиля
+function openPopupEdit() {
+    openPopup(popupEdit);
+    nameInput.value = title.textContent;
+    detailInput.value = subtitle.textContent;
+  }
+  
+  function closePopupEdit() {
+    closePopup(popupEdit);
+  }
+openEditButtonPopup.addEventListener('click', openPopupEdit);
+closePopupButton.addEventListener('click', closePopupEdit);
 
+//Добавление фотографии PopUp
+function openPopupAdd() {
+    openPopup(popupAdd);
+    inputCardName.value = '';
+    inputLink.value = '';
 }
 
+function closePopupAdd() {
+    closePopup(popupAdd);
+}
+//
+openAddButtonPopup.addEventListener('click', openPopupAdd);
+closePopupButtonAdd.addEventListener('click', closePopupAdd);
 
-openEditButtonPopup.addEventListener('click', openPopup);
-closePopupButton.addEventListener('click', closePopup);
+//Фотография при нажатии.
+function openPopupPic() {
+    openPopup(popupPic);
+  }
+  function closePopupPic() {
+    closePopup(popupPic);  
+  }
+  
+  closePopupButtonPic.addEventListener('click', closePopupPic);
 
-
-let formElement = document.querySelector('.popup__form');
-let nameInput = document.querySelector('.popup__input_type_name'); 
-let jobInput = document.querySelector('.popup__input_type_job'); 
-let title = document.querySelector('.profile__id-title');
-let subtitle = document.querySelector('.profile__id-subtitle');
-
-
+//Редактирование
 function formSubmitHandler (evt) {
     evt.preventDefault(); 
-  
-title.textContent = nameInput.value; 
-subtitle.textContent = jobInput.value;
+    title.textContent = nameInput.value; 
+    subtitle.textContent = detailInput.value;
 
-closePopup();
+    closePopup(popupEdit);
 }
 
 formElement.addEventListener('submit', formSubmitHandler);
+
+const initialCards = [
+    {
+      name: 'Москва',
+      link: 'https://images.unsplash.com/photo-1512495039889-52a3b799c9bc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80'
+    },
+    {
+      name: 'Санкт-Петербург',
+      link: 'https://images.unsplash.com/photo-1630535879508-9a3a8967d9be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80'
+    },
+    {
+      name: 'Казань',
+      link: 'https://images.unsplash.com/photo-1591996641407-2bb7e90db46a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80'
+    },
+    {
+      name: 'Владивосток',
+      link: 'https://images.unsplash.com/photo-1634887042266-3651a54b9a69?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'
+    },
+    {
+        name: 'Сочи',
+        link: 'https://images.unsplash.com/photo-1589783383891-585baca1e191?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80'
+      },
+    {
+      name: 'Томск',
+      link: 'https://cs7.pikabu.ru/post_img/2017/12/22/7/og_og_1513942085292990561.jpg'
+    }
+   
+  ];
+
+  const cards = document.querySelector('.cards').content;
+  const cardList = document.querySelector('.pictures__board');
+  const inputCardName = document.querySelector('.popup__input_card-name');
+  const inputLink = document.querySelector('.popup__input-link');
+  const cardButton = document.querySelector('.popup__button_card');
+  
+  function createCard(card){
+    const cardElement = cards.cloneNode(true);
+    const cardImages = cardElement.querySelector('.pictures__images');
+    const cardTitle = cardElement.querySelector('.pictures__title');
+    
+    //Ставим лайк
+    const likeActive = cardElement.querySelector('.pictures__like');
+    likeActive.addEventListener('click', addLike);
+  
+    //удалить добавленную фотографию
+    const deleteButton = cardElement.querySelector('.pictures__delete');
+    deleteButton.addEventListener('click', deleteCard);
+  
+    cardImages.addEventListener('click', () => openPopupPic(card));
+    cardTitle.textContent = card.name;
+    cardImages.src = card.link;
+    return cardElement;
+  }
+  function renderCard(card) { 
+    cardList.prepend(createCard(card)); 
+  } 
+  
+  initialCards.forEach(renderCard);
+  
+  
+  function addItem(event) {
+    event.preventDefault();
+    closePopupAdd();
+    renderCard({name: inputCardName.value, link: inputLink.value});
+  }
+  
+  
+  cardButton.addEventListener('click', addItem);
+  
+//лайк 
+function addLike(e) {
+    e.target.classList.toggle('pictures__like_active');
+}
+
+ 
+function deleteCard(e) {
+  e.target.closest('.pictures__item').remove();
+}
+
+
+
+
+
+
+const popupOpenPic = document.querySelector('.popup__photo');
+const popupOpenTitle = document.querySelector('.popup__photo-title');
+
+
+function openPopupPic(data) {
+ 
+  openPopup(popupPic);
+  popupOpenPic.src = data.link;
+  popupOpenPic.alt = data.name;
+  popupOpenTitle.textContent = data.name;
+}
