@@ -36,8 +36,8 @@ function openPopupEdit() {
   function closePopupEdit() {
     closePopup(popupEdit);
   }
-openEditButtonPopup.addEventListener('click', openPopupEdit);
-closePopupButton.addEventListener('click', closePopupEdit);
+openEditButtonPopup.addEventListener('click', () => openPopup(popupEdit));
+closePopupButton.addEventListener('click', () => closePopup(popupEdit));
 
 //Добавление фотографии PopUp
 function openPopupAdd() {
@@ -50,8 +50,8 @@ function closePopupAdd() {
     closePopup(popupAdd);
 }
 //
-openAddButtonPopup.addEventListener('click', openPopupAdd);
-closePopupButtonAdd.addEventListener('click', closePopupAdd);
+openAddButtonPopup.addEventListener('click', () => openPopup(popupAdd));
+closePopupButtonAdd.addEventListener('click', () => closePopup(popupAdd));
 
 //Фотография при нажатии.
 function openPopupPic() {
@@ -61,7 +61,7 @@ function openPopupPic() {
     closePopup(popupPic);  
   }
   
-  closePopupButtonPic.addEventListener('click', closePopupPic);
+  closePopupButtonPic.addEventListener('click', () => closePopup(popupPic));
 
 //Редактирование
 function formSubmitHandler (evt) {
@@ -123,6 +123,7 @@ const initialCards = [
   
     cardImages.addEventListener('click', () => openPopupPic(card));
     cardTitle.textContent = card.name;
+    cardImages.alt = card.name
     cardImages.src = card.link;
     return cardElement;
   }
