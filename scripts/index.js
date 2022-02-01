@@ -54,12 +54,7 @@ openAddButtonPopup.addEventListener('click', () => openPopup(popupAdd));
 closePopupButtonAdd.addEventListener('click', () => closePopup(popupAdd));
 
 //Фотография при нажатии.
-function openPopupPic() {
-    openPopup(popupPic);
-  }
-  function closePopupPic() {
-    closePopup(popupPic);  
-  }
+
   
   closePopupButtonPic.addEventListener('click', () => closePopup(popupPic));
 
