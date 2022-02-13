@@ -21,10 +21,13 @@ const subtitle = document.querySelector('.profile__id-subtitle');
 //Отрываем PopUp
 function openPopup(popup) {
     popup.classList.add('popup_open');
+    document.addEventListener("keydown", keyCloseEsc);
+    popup.addEventListener("click", closeOverlayPopup);
 }
 //Закрываем PopUp
 function closePopup(popup) {
 popup.classList.remove('popup_open');
+document.removeEventListener("keydown", keyCloseEsc);
 }
 //Редактирование профиля
 function openPopupEdit() {
@@ -124,6 +127,7 @@ const initialCards = [
   }
   function renderCard(card) { 
     cardList.prepend(createCard(card)); 
+    cardButton.classList.add("popup__button_disabled");
   } 
   
   initialCards.forEach(renderCard);
@@ -149,10 +153,6 @@ function deleteCard(e) {
 }
 
 
-
-
-
-
 const popupOpenPic = document.querySelector('.popup__photo');
 const popupOpenTitle = document.querySelector('.popup__photo-title');
 
@@ -164,3 +164,17 @@ function openPopupPic(data) {
   popupOpenPic.alt = data.name;
   popupOpenTitle.textContent = data.name;
 }
+
+function keyCloseEsc(evt) {
+    if (evt.key === "Escape") {
+      const popupCloseEsc = document.querySelector(".popup_open");
+      closePopup(popupCloseEsc);
+    }
+  }
+  
+  function closeOverlayPopup(evt) {
+    if (evt.target.classList.contains("popup_open")) {
+      const popupCloseOverlay = document.querySelector(".popup_open");
+      closePopup(popupCloseOverlay);
+    }
+  }
