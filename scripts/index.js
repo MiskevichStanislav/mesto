@@ -142,6 +142,7 @@ const initialCards = [
   function renderCard(card) { 
     cardList.prepend(createCard(card)); 
     cardButton.classList.add('popup__button_disabled');
+    cardButton.setAttribute('disabled', true);
   } 
   
   initialCards.forEach(renderCard);
@@ -154,7 +155,7 @@ const initialCards = [
   }
   
   
-  cardButton.addEventListener('submit', addItem);
+  cardButton.addEventListener('click', addItem);
   
 //лайк 
 function addLike(e) {
