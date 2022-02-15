@@ -76,7 +76,7 @@ closePopupButtonAdd.addEventListener('click', () => closePopup(popupAdd));
   closePopupButtonPic.addEventListener('click', () => closePopup(popupPic));
 
 //Редактирование--------------------------------------------------------------------------------------------------------------
-function handleFormSubmit (evt) {
+function sendFormSubmitHandlet (evt) {
     evt.preventDefault(); 
     title.textContent = nameInput.value; 
     subtitle.textContent = detailInput.value;
@@ -84,7 +84,7 @@ function handleFormSubmit (evt) {
     closePopup(popupEdit);
 }
 
-formElement.addEventListener('submit', handleFormSubmit;
+formElement.addEventListener('submit', sendFormSubmitHandlet);
 
 const initialCards = [
     {
