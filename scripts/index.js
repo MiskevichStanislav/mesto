@@ -36,13 +36,14 @@ function keyCloseEsc(evt) {
     closePopup(popupCloseEsc);
   }
 }
-
-function closeOverlayPopup(evt) {
+document.addEventListener('click', (evt) => {
   if (evt.target.classList.contains('popup_open')) {
     const popupCloseOverlay = document.querySelector('.popup_open');
     closePopup(popupCloseOverlay);
   }
-}
+})
+
+
 
 //Редактирование профиля---------------------------------------------------------
 function openPopupEdit() {
@@ -179,4 +180,5 @@ function openPopupPic(data) {
   popupOpenPic.alt = data.name;
   popupOpenTitle.textContent = data.name;
 }
+
 
