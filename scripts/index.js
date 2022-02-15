@@ -37,11 +37,18 @@ function keyCloseEsc(evt) {
     closePopup(popupCloseEsc);
   }
 }
-document.addEventListener('click', (evt) => {
-  if (evt.target.classList.contains('popup_open')) {
-    closePopup(popupCloseOverlay);
+
+function closeWithOverlay(evt) {
+  const popupOpen = document.querySelector('.popup_open');
+  const formElement = popupOpened.querySelector('.popup__form');
+  if(evt.target === popupOpen) {
+    closePopup(popupOpen);
+    if(formElement !== null) {
+      formElement.reset();
+    }
   }
-})
+}
+
 
 
 
