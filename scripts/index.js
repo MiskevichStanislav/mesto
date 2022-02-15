@@ -47,9 +47,9 @@ document.addEventListener('click', (evt) => {
 
 //-----------------------------------Редактирование профиля---------------------------------------------------------
 function openPopupEdit() {
-    openPopup(popupEdit);
     nameInput.value = title.textContent;
     detailInput.value = subtitle.textContent;
+    openPopup(popupEdit);
   }
   
   function closePopupEdit() {
@@ -60,15 +60,15 @@ closePopupButton.addEventListener('click', () => closePopup(popupEdit));
 
 //----------------------------------Добавление фотографии PopUp----------------------------------------------------------------------------
 function openPopupAdd() {
-    openPopup(popupAdd);
     inputCardName.value = '';
     inputLink.value = '';
+    openPopup(popupAdd);
 }
 
 function closePopupAdd() {
     closePopup(popupAdd);
 }
-//
+
 openAddButtonPopup.addEventListener('click', () => openPopup(popupAdd));
 closePopupButtonAdd.addEventListener('click', () => closePopup(popupAdd));
 
