@@ -33,13 +33,12 @@ document.removeEventListener("keydown", keyCloseEsc);
 
 function keyCloseEsc(evt) {
   if (evt.key === 'Escape') {
-    
+    const popupCloseEsc = document.querySelector('.popup_open');
     closePopup(popupCloseEsc);
   }
 }
 document.addEventListener('click', (evt) => {
   if (evt.target.classList.contains('popup_open')) {
-    const popupCloseOverlay = document.querySelector('.popup_open');
     closePopup(popupCloseOverlay);
   }
 })
