@@ -18,13 +18,13 @@ const title = document.querySelector('.profile__id-title');
 const subtitle = document.querySelector('.profile__id-subtitle');
 
 
-//Отрываем PopUp----------------------------------------------------------------------
+//--------------------------------------Отрываем PopUp----------------------------------------------------------------------
 function openPopup(popup) {
     popup.classList.add('popup_open');
     document.addEventListener("keydown", keyCloseEsc);
     
 }
-//Закрываем PopUp-----------------------------------------------------------------
+//--------------------------------------Закрываем PopUp-----------------------------------------------------------------
 function closePopup(popup) {
 popup.classList.remove('popup_open');
 document.removeEventListener("keydown", keyCloseEsc);
@@ -45,7 +45,7 @@ document.addEventListener('click', (evt) => {
 
 
 
-//Редактирование профиля---------------------------------------------------------
+//-----------------------------------Редактирование профиля---------------------------------------------------------
 function openPopupEdit() {
     openPopup(popupEdit);
     nameInput.value = title.textContent;
@@ -58,7 +58,7 @@ function openPopupEdit() {
 openEditButtonPopup.addEventListener('click', () => openPopup(popupEdit));
 closePopupButton.addEventListener('click', () => closePopup(popupEdit));
 
-//Добавление фотографии PopUp----------------------------------------------------------------------------
+//----------------------------------Добавление фотографии PopUp----------------------------------------------------------------------------
 function openPopupAdd() {
     openPopup(popupAdd);
     inputCardName.value = '';
@@ -72,7 +72,7 @@ function closePopupAdd() {
 openAddButtonPopup.addEventListener('click', () => openPopup(popupAdd));
 closePopupButtonAdd.addEventListener('click', () => closePopup(popupAdd));
 
-//Фотография при нажатии--------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------Фотография при нажатии--------------------------------------------------------------------------------------------------------------------------
   
   closePopupButtonPic.addEventListener('click', () => closePopup(popupPic));
 
@@ -126,11 +126,11 @@ const initialCards = [
     const cardImages = cardElement.querySelector('.pictures__images');
     const cardTitle = cardElement.querySelector('.pictures__title');
     
-    //Ставим лайк
+    //---------------------------------------Ставим лайк----------------------------------------------------------
     const likeActive = cardElement.querySelector('.pictures__like');
     likeActive.addEventListener('click', addLike);
   
-    //удалить добавленную фотографию
+    //-------------------------------удалить добавленную фотографию---------------------------------------------------
     const deleteButton = cardElement.querySelector('.pictures__delete');
     deleteButton.addEventListener('click', deleteCard);
   
@@ -158,7 +158,7 @@ const initialCards = [
   
   cardButton.addEventListener('click', addItem);
   
-//лайк 
+//---------------------------------------------------лайк----------------------------------------------- 
 function addLike(e) {
     e.target.classList.toggle('pictures__like_active');
 }
