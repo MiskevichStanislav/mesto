@@ -47,7 +47,7 @@ document.addEventListener('click', (evt) => {
 
 //-----------------------------------Редактирование профиля---------------------------------------------------------
 function openPopupEdit() {
-    formPopupEditAdd.resetValidation();
+    formPopupEditAdd.reset();
     nameInput.value = title.textContent;
     detailInput.value = subtitle.textContent;
     openPopup(popupEdit);
