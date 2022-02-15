@@ -22,6 +22,7 @@ const subtitle = document.querySelector('.profile__id-subtitle');
 function openPopup(popup) {
     popup.classList.add('popup_open');
     document.addEventListener("keydown", keyCloseEsc);
+   
     
 }
 //--------------------------------------Закрываем PopUp-----------------------------------------------------------------
@@ -32,7 +33,7 @@ document.removeEventListener("keydown", keyCloseEsc);
 
 function keyCloseEsc(evt) {
   if (evt.key === 'Escape') {
-    const popupCloseEsc = document.querySelector('.popup_open');
+    
     closePopup(popupCloseEsc);
   }
 }
@@ -77,8 +78,8 @@ closePopupButtonAdd.addEventListener('click', () => closePopup(popupAdd));
   
   closePopupButtonPic.addEventListener('click', () => closePopup(popupPic));
 
-//Редактирование--------------------------------------------------------------------------------------------------------------
-function sendFormSubmitHandlet (evt) {
+//--------------------------------------Редактирование--------------------------------------------------------------------------------------------------------------
+function handleProfileFormSubmit(evt) {
     evt.preventDefault(); 
     title.textContent = nameInput.value; 
     subtitle.textContent = detailInput.value;
@@ -86,7 +87,7 @@ function sendFormSubmitHandlet (evt) {
     closePopup(popupEdit);
 }
 
-formElement.addEventListener('submit', sendFormSubmitHandlet);
+formElement.addEventListener('submit', handleProfileFormSubmit);
 
 const initialCards = [
     {
