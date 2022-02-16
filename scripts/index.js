@@ -1,7 +1,7 @@
 " use strict ";
 
 const openEditButtonPopup = document.querySelector('.profile__button-edit');
-const popup = document.querySelector('.popup');
+//const popup = document.querySelectorAll('.popup');
 const popupEdit = document.querySelector('.popup_edit');
 const closePopupButton = document.querySelector('.popup__close');
 const openAddButtonPopup = document.querySelector('.profile__button-add');
@@ -12,7 +12,7 @@ const popupPicClose = document.querySelector('.popup_picture');
 const closePopupButtonPic = document.querySelector('.popup__close_pic');
 
 const formElement = document.querySelector('.popup__form');
-const formElementAdd = document.querySelector('.popup__form_add')
+const formElementAdd = document.querySelector('.popup__form_add');
 const nameInput = document.querySelector('.popup__input-name'); 
 const detailInput = document.querySelector('.popup__input-detail'); 
 const title = document.querySelector('.profile__id-title');
@@ -21,10 +21,10 @@ const subtitle = document.querySelector('.profile__id-subtitle');
 
 //--------------------------------------Отрываем PopUp----------------------------------------------------------------------
 function openPopup(popup) {
-    popup.classList.add('popup_open');
-    document.addEventListener("keydown", keyCloseEsc);
-    formElement.reset();
+popup.classList.add('popup_open');
+document.addEventListener("keydown", keyCloseEsc);
 }
+
 //--------------------------------------Закрываем PopUp-----------------------------------------------------------------
 function closePopup(popup) {
 popup.classList.remove('popup_open');
@@ -38,16 +38,17 @@ function keyCloseEsc(evt) {
   }
 }
 
-function closeWithOverlay(evt) {
+
+/*function closeWithOverlay(evt) {
   const popupOpen = document.querySelector('.popup_open');
-  const formElement = document.querySelector('.popup__form');
   if(evt.target === popupOpen) {
     closePopup(popupOpen);
   }
 }
-
+*/
 //-----------------------------------Редактирование профиля---------------------------------------------------------
 function openPopupEdit() {
+    formElement.reset();
     nameInput.value = title.textContent;
     detailInput.value = subtitle.textContent;
     openPopup(popupEdit);
@@ -61,10 +62,8 @@ closePopupButton.addEventListener('click', () => closePopup(popupEdit));
 
 //----------------------------------Добавление фотографии PopUp----------------------------------------------------------------------------
 function openPopupAdd() {
-    inputCardName.value = '';
-    inputLink.value = '';
-    openPopup(popupAdd);
     formElementAdd.reset();
+    openPopup(popupAdd);
 }
 
 function closePopupAdd() {
