@@ -12,6 +12,7 @@ const popupPicClose = document.querySelector('.popup_picture');
 const closePopupButtonPic = document.querySelector('.popup__close_pic');
 
 const formElement = document.querySelector('.popup__form');
+const formElementAdd = document.querySelector('.popup__form_add')
 const nameInput = document.querySelector('.popup__input-name'); 
 const detailInput = document.querySelector('.popup__input-detail'); 
 const title = document.querySelector('.profile__id-title');
@@ -22,8 +23,7 @@ const subtitle = document.querySelector('.profile__id-subtitle');
 function openPopup(popup) {
     popup.classList.add('popup_open');
     document.addEventListener("keydown", keyCloseEsc);
-   
-    
+    formElement.reset();
 }
 //--------------------------------------Закрываем PopUp-----------------------------------------------------------------
 function closePopup(popup) {
@@ -40,21 +40,14 @@ function keyCloseEsc(evt) {
 
 function closeWithOverlay(evt) {
   const popupOpen = document.querySelector('.popup_open');
-  const formElement = popupOpened.querySelector('.popup__form');
+  const formElement = document.querySelector('.popup__form');
   if(evt.target === popupOpen) {
     closePopup(popupOpen);
-    if(formElement !== null) {
-      formElement.reset();
-    }
   }
 }
 
-
-
-
 //-----------------------------------Редактирование профиля---------------------------------------------------------
 function openPopupEdit() {
-    formPopupEditAdd.reset();
     nameInput.value = title.textContent;
     detailInput.value = subtitle.textContent;
     openPopup(popupEdit);
@@ -71,6 +64,7 @@ function openPopupAdd() {
     inputCardName.value = '';
     inputLink.value = '';
     openPopup(popupAdd);
+    formElementAdd.reset();
 }
 
 function closePopupAdd() {
@@ -89,7 +83,6 @@ function handleProfileFormSubmit(evt) {
     evt.preventDefault(); 
     title.textContent = nameInput.value; 
     subtitle.textContent = detailInput.value;
-
     closePopup(popupEdit);
 }
 
@@ -147,6 +140,7 @@ const initialCards = [
     cardImages.alt = card.name
     cardImages.src = card.link;
     return cardElement;
+    
   }
   function renderCard(card) { 
     cardList.prepend(createCard(card)); 
