@@ -3,7 +3,7 @@
 const openEditButtonPopup = document.querySelector('.profile__button-edit');
 //const popup = document.querySelectorAll('.popup');
 const popupEdit = document.querySelector('.popup_edit');
-const closePopupButton = document.querySelector('.popup__close');
+const closePopupButtonEdit = document.querySelector('.popup__close_edit');
 const openAddButtonPopup = document.querySelector('.profile__button-add');
 const popupAdd = document.querySelector('.popup_add');
 const closePopupButtonAdd = document.querySelector('.popup__close_add');
@@ -23,6 +23,15 @@ const subtitle = document.querySelector('.profile__id-subtitle');
 function openPopup(popup) {
 popup.classList.add('popup_open');
 document.addEventListener("keydown", keyCloseEsc);
+closePopupOverlay();
+}
+function closePopupOverlay() {
+  const popupActive = document.querySelector('.popup_open');
+  popupActive.addEventListener('click', (event) => {
+  if (event.target.classList.contains('popup_open')) {
+      closePopup(popupActive);
+    }
+  })
 }
 
 //--------------------------------------Закрываем PopUp-----------------------------------------------------------------
@@ -39,14 +48,6 @@ function keyCloseEsc(evt) {
 }
 
 
-/*function closeWithOverlay(evt) {
-  const popupOpen = document.querySelector('.popup_open');
-  if(evt.target === popupOpen) {
-    closePopup(popupOpen);
-  }
-}
-*/
-
 //-----------------------------------Редактирование профиля---------------------------------------------------------
 function openPopupEdit() {
     formElement.reset();
@@ -59,7 +60,7 @@ function openPopupEdit() {
     closePopup(popupEdit);
   }
 openEditButtonPopup.addEventListener('click', () => openPopupEdit(popupEdit));
-closePopupButton.addEventListener('click', () => closePopup(popupEdit));
+closePopupButtonEdit.addEventListener('click', () => closePopup(popupEdit));
 
 //----------------------------------Добавление фотографии PopUp----------------------------------------------------------------------------
 function openPopupAdd() {
@@ -76,7 +77,7 @@ closePopupButtonAdd.addEventListener('click', () => closePopup(popupAdd));
 
 //-----------------------------------Фотография при нажатии--------------------------------------------------------------------------------------------------------------------------
   
-  closePopupButtonPic.addEventListener('click', () => closePopup(popupPic));
+  closePopupButtonPic.addEventListener('click', () => closePopupPic(popupPic));
 
 //--------------------------------------Редактирование--------------------------------------------------------------------------------------------------------------
 function handleProfileFormSubmit(evt) {
