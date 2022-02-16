@@ -46,6 +46,7 @@ function keyCloseEsc(evt) {
   }
 }
 */
+
 //-----------------------------------Редактирование профиля---------------------------------------------------------
 function openPopupEdit() {
     formElement.reset();
@@ -57,7 +58,7 @@ function openPopupEdit() {
   function closePopupEdit() {
     closePopup(popupEdit);
   }
-openEditButtonPopup.addEventListener('click', () => openPopup(popupEdit));
+openEditButtonPopup.addEventListener('click', () => openPopupEdit(popupEdit));
 closePopupButton.addEventListener('click', () => closePopup(popupEdit));
 
 //----------------------------------Добавление фотографии PopUp----------------------------------------------------------------------------
@@ -70,7 +71,7 @@ function closePopupAdd() {
     closePopup(popupAdd);
 }
 
-openAddButtonPopup.addEventListener('click', () => openPopup(popupAdd));
+openAddButtonPopup.addEventListener('click', () => openPopupAdd(popupAdd));
 closePopupButtonAdd.addEventListener('click', () => closePopup(popupAdd));
 
 //-----------------------------------Фотография при нажатии--------------------------------------------------------------------------------------------------------------------------
