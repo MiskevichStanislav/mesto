@@ -1,7 +1,7 @@
 " use strict ";
 
 const openEditButtonPopup = document.querySelector('.profile__button-edit');
-//const popup = document.querySelectorAll('.popup');
+const popups = document.querySelectorAll('.popup');
 const popupEdit = document.querySelector('.popup_edit');
 const closePopupButtonEdit = document.querySelector('.popup__close_edit');
 const openAddButtonPopup = document.querySelector('.profile__button-add');
@@ -23,16 +23,24 @@ const subtitle = document.querySelector('.profile__id-subtitle');
 function openPopup(popup) {
 popup.classList.add('popup_open');
 document.addEventListener("keydown", keyCloseEsc);
-closePopupOverlay();
+
 }
-function closePopupOverlay() {
+popups.forEach(popup => popup.addEventListener('click', event => {
+  if (event.target.classList.contains('popup_opened')) {
+    closePopup(event.target);
+  }
+}))
+
+/*function closePopupOverlay() {
   const popupActive = document.querySelector('.popup_open');
   popupActive.addEventListener('click', (event) => {
   if (event.target.classList.contains('popup_open')) {
       closePopup(popupActive);
     }
   })
-}
+}*/
+
+
 
 //--------------------------------------Закрываем PopUp-----------------------------------------------------------------
 function closePopup(popup) {
@@ -71,11 +79,11 @@ function openPopupAdd() {
 openAddButtonPopup.addEventListener('click', () => openPopupAdd(popupAdd));
 closePopupButtonAdd.addEventListener('click', () => closePopup(popupAdd));
 
-//-----------------------------------Фотография при нажатии--------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------Фотография при нажатии-----------------------------------------------------------------------------------
   
   closePopupButtonPic.addEventListener('click', () => closePopup(popupPic));
 
-//--------------------------------------Редактирование--------------------------------------------------------------------------------------------------------------
+//--------------------------------------Редактирование----------------------------------------------------------------------------------------
 function handleProfileFormSubmit(evt) {
     evt.preventDefault(); 
     title.textContent = nameInput.value; 
