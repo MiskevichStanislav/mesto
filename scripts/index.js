@@ -27,7 +27,6 @@ document.addEventListener("keydown", keyCloseEsc);
 }
 popups.forEach(popup => popup.addEventListener('click', event => {
   if (event.target.classList.contains('popup_open')) {
-    console.log(event.target);
     closePopup(popup);
   }
 }))
