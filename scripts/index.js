@@ -77,7 +77,7 @@ closePopupButtonAdd.addEventListener('click', () => closePopup(popupAdd));
 
 //-----------------------------------Фотография при нажатии--------------------------------------------------------------------------------------------------------------------------
   
-  closePopupButtonPic.addEventListener('click', () => closePopupPic(popupPic));
+  closePopupButtonPic.addEventListener('click', () => closePopup(popupPic));
 
 //--------------------------------------Редактирование--------------------------------------------------------------------------------------------------------------
 function handleProfileFormSubmit(evt) {
