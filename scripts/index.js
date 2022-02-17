@@ -26,10 +26,12 @@ document.addEventListener("keydown", keyCloseEsc);
 
 }
 popups.forEach(popup => popup.addEventListener('click', event => {
+  console.log(event.target);
   if (event.target.classList.contains('popup_opened')) {
-    closePopup(event.target);
+    closePopup(popup);
   }
 }))
+
 
 /*function closePopupOverlay() {
   const popupActive = document.querySelector('.popup_open');
