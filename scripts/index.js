@@ -56,9 +56,7 @@ function openPopupEdit() {
     openPopup(popupEdit);
   }
   
-  function closePopupEdit() {
-    closePopup(popupEdit);
-  }
+  
 openEditButtonPopup.addEventListener('click', () => openPopupEdit(popupEdit));
 closePopupButtonEdit.addEventListener('click', () => closePopup(popupEdit));
 
@@ -68,9 +66,7 @@ function openPopupAdd() {
     openPopup(popupAdd);
 }
 
-function closePopupAdd() {
-    closePopup(popupAdd);
-}
+
 
 openAddButtonPopup.addEventListener('click', () => openPopupAdd(popupAdd));
 closePopupButtonAdd.addEventListener('click', () => closePopup(popupAdd));
