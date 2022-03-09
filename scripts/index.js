@@ -19,6 +19,7 @@ const inputLink = document.querySelector('.popup__input-link');
 const popupOpenPic = document.querySelector('.popup__photo');
 const popupOpenTitle = document.querySelector('.popup__photo-title');
 
+
 function openPopup(popup) {
   popup.classList.add('popup_open');
   document.addEventListener("keydown", keyCloseEsc);
