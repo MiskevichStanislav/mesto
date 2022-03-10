@@ -1,24 +1,37 @@
 import {initialCards} from "./initial-card.js";
 
+import {Card} from "./Card.js";
+
+import {FormValidator} from "./FormValidator.js";
+
 const openEditButtonPopup = document.querySelector('.profile__button-edit');
 const popups = document.querySelectorAll('.popup');
 const popupEdit = document.querySelector('.popup_edit');
 const openAddButtonPopup = document.querySelector('.profile__button-add');
 const popupAdd = document.querySelector('.popup_add');
 const popupPic = document.querySelector('.popup_picture');
-const formElementEdit = document.querySelector('.popup__form_type_profile-edit');
-const formElementAdd = document.querySelector('.popup__form_type_image-add');
+const formElementEdit = document.querySelector('.popup__form');
+const formElementAdd = document.querySelector('.popup__form');
 const nameInput = document.querySelector('.popup__input-name'); 
 const detailInput = document.querySelector('.popup__input-detail'); 
 const title = document.querySelector('.profile__id-title');
 const subtitle = document.querySelector('.profile__id-subtitle');
-const templateCard = document.querySelector('.template-card').content;
 const cardList = document.querySelector('.pictures__board');
 const inputCardName = document.querySelector('.popup__input_card-name');
 const inputLink = document.querySelector('.popup__input-link');
 const popupOpenPic = document.querySelector('.popup__photo');
 const popupOpenTitle = document.querySelector('.popup__photo-title');
+const validationConfig = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button",
+  inactiveButtonClass: "popup__button_disabled",
+  inputErrorClass: "popup__error",
+  errorClass: "popup__error_active",
+}
+const formElementAddValidator = new FormValidator(validationConfig, formElementAdd);
 
+const formElementEditValidator = new FormValidator(validationConfig, formElementEdit);
 
 function openPopup(popup) {
   popup.classList.add('popup_open');
@@ -38,15 +51,16 @@ function keyCloseEsc(event) {
 }
 
 function openPopupEdit() {
-  formElementEdit.reset();
   nameInput.value = title.textContent;
   detailInput.value = subtitle.textContent;
+  formElementAddValidator.resetErrors();
   openPopup(popupEdit);
 }
 
 //----------------------------------Добавление фотографии PopUp----------------------------------------------------------------------------
 function openPopupAdd() {
   formElementAdd.reset();
+  formElementAddValidator.resetErrors();
   openPopup(popupAdd);
 }
 
@@ -57,19 +71,9 @@ function submitFormEditProfile(event) {
   closePopup(popupEdit);
 }
 
-function createCard(card) {
-  const cardElement = templateCard.cloneNode(true);
-  const cardImages = cardElement.querySelector('.pictures__images');
-  const cardTitle = cardElement.querySelector('.pictures__title');
-  const likeActive = cardElement.querySelector('.pictures__like');
-  likeActive.addEventListener('click', addLike);
-  const deleteButton = cardElement.querySelector('.pictures__delete');
-  deleteButton.addEventListener('click', deleteCard);
-  cardImages.addEventListener('click', () => openPopupPic(card));
-  cardTitle.textContent = card.name;
-  cardImages.alt = card.name
-  cardImages.src = card.link;
-  return cardElement;
+function createCard(data) {
+  const card = new Card(data, '.template-card');
+  return card.createCard();
 }
 
 function renderCard(card) { 
@@ -90,11 +94,11 @@ function deleteCard(event) {
   event.target.closest('.pictures__item').remove();
 }
 
-function openPopupPic(data) {
+export function openPopupPic(name, link) {
+  popupOpenPic.src = link;
+  popupOpenPic.alt = name;
+  popupOpenTitle.textContent = name;
   openPopup(popupPic);
-  popupOpenPic.src = data.link;
-  popupOpenPic.alt = data.name;
-  popupOpenTitle.textContent = data.name;
 }
 
 // -----------------------------Универсальная функция закрытия попап----------------------------
@@ -113,4 +117,8 @@ formElementEdit.addEventListener('submit', submitFormEditProfile);
 
 openAddButtonPopup.addEventListener('click', () => openPopupAdd(popupAdd));
 
-initialCards.forEach(renderCard);
+initialCards.forEach(data => renderCard(data));
+
+formElementAddValidator.enableValidation();
+
+formElementEditValidator.enableValidation();
