@@ -23,11 +23,10 @@ export class FormValidator {
   _checkInputValidity(inputElement) {
     if (!inputElement.validity.valid) {
       this._showInputError(inputElement);
-      this._disableSubmitButton();
     } else {
       this._hideInputError(inputElement);
-      this._enableSubmitButton()
     }
+    this._toggleButtonState() 
   }
 
   _hasInvalidInput() {
