@@ -10,8 +10,8 @@ const popupEdit = document.querySelector('.popup_edit');
 const openAddButtonPopup = document.querySelector('.profile__button-add');
 const popupAdd = document.querySelector('.popup_add');
 const popupPic = document.querySelector('.popup_picture');
-const formElementEdit = document.querySelector('.popup__form');
-const formElementAdd = document.querySelector('.popup__form');
+const formElementEdit = document.querySelector('.popup__form_type_profile-edit');
+const formElementAdd = document.querySelector('.popup__form_type_image-add');
 const nameInput = document.querySelector('.popup__input-name'); 
 const detailInput = document.querySelector('.popup__input-detail'); 
 const title = document.querySelector('.profile__id-title');
@@ -53,14 +53,14 @@ function keyCloseEsc(event) {
 function openPopupEdit() {
   nameInput.value = title.textContent;
   detailInput.value = subtitle.textContent;
-  formElementAddValidator.resetErrors();
+  formElementEditValidator.resetErrors(popupEdit);
   openPopup(popupEdit);
 }
 
 //----------------------------------Добавление фотографии PopUp----------------------------------------------------------------------------
 function openPopupAdd() {
   formElementAdd.reset();
-  formElementAddValidator.resetErrors();
+  formElementAddValidator.resetErrors(popupAdd);
   openPopup(popupAdd);
 }
 
