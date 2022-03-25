@@ -4,13 +4,12 @@
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="./pages/index.css">
       <title>Место России</title>
    </head>
    <body class="page">
       <header class="header">
          <a class="header__logo-link" href="#">
-         <img  class="header__logo" src="./images/logo-white.svg" alt="Лого место России">
+         <img  class="header__logo" src="<%=require('./images/logo-white.svg')%>" alt="Лого место России">
          </a>
       </header>
       <main class="content">
@@ -28,7 +27,7 @@
             <button class="profile__button-add" type="button"></button>
          </section>
          <section class="pictures">
-             <div class="pictures__board"></div>
+             <ul class="pictures__board"></ul>
          </section>
 
       </main>
@@ -42,9 +41,9 @@
             <button class="popup__close popup__close_edit" type="button"></button>
             <h2 class="popup__title">Редактировать профиль</h2>
             <form class="popup__form popup__form_type_profile-edit" name="form" novalidate>
-               <input id = "name-input" class="popup__input popup__input-name" type="text"  minlength="2" maxlength="40" required placeholder="Напишите ваше имя">
+               <input name = 'name' id = "name-input" class="popup__input popup__input-name" type="text"  minlength="2" maxlength="40" required placeholder="Напишите ваше имя">
                <span class="name-input-error"></span>
-               <input id = "detail-input" class="popup__input popup__input-detail" type="text" minlength="2" maxlength="200" required placeholder="Расскажите о себе">
+               <input name = 'detail' id = "detail-input" class="popup__input popup__input-detail" type="text" minlength="2" maxlength="200" required placeholder="Расскажите о себе">
                <span class="detail-input-error"></span>
                <button class="popup__button" type="submit">Сохранить</button>
             </form>
@@ -56,9 +55,9 @@
             <button class="popup__close popup__close_add" type="button"></button>
             <h2 class="popup__title">Добавление фотографии</h2>
             <form class="popup__form popup__form_type_image-add" name="form" novalidate>
-               <input id = "card-input" class="popup__input popup__input_card-name" type="text" minlength="2" maxlength="30" required placeholder="Как называется ваше место">
+               <input name = 'card' id = "card-input" class="popup__input popup__input_card-name" type="text" minlength="2" maxlength="30" required placeholder="Как называется ваше место">
                <span class="card-input-error"></span>
-               <input id = "url-input" class="popup__input popup__input-link" type="url" name="link" placeholder="Ссылка на фотографию" required>
+               <input name = 'link' id = "url-input" class="popup__input popup__input-link" type="url" name="link" placeholder="Ссылка на фотографию" required>
                <span class="url-input-error"></span>
                <button class="popup__button popup__button_card" type="submit">Сохранить</button>
             </form>
@@ -84,8 +83,9 @@
          </li>
       </template>
 
-      <script type="module" src="./scripts/index.js"></script>
-      <script type="module" src="./scripts/initial-card.js"></script>
-      <script type="module" src="./scripts/Card.js"></script>
+      <script type="module" src="../src/scripts/components/Card.js"></script>
+      <script type="module" src="../src/scripts/utils/initial-card.js"></script>
+      <script type="module" src="../src/scripts/pages/index.js"></script>
+      <script type="module" src="../src/scripts/components/FormValidator.js"></script>
    </body>
 </html>
