@@ -1,49 +1,18 @@
 import '../../styles/index.css';
 
-import { Section } from "../components/Section";
 import * as constantes from "../utils/constants";
 import { initialCards } from "../utils/initial-card";
 import { Card } from "../components/Card";
 import { FormValidator } from "../components/FormValidator";
 
+import { Section } from "../components/Section";
+const section = new Section({ items: initialCards, renderer: renderCard }, '.pictures__board');
 //import { PopupWithForm } from "../components/PopupWithForm";
 //import { PopupWithImage } from "../components/PopupWithImage";
-
 //import { UserInfo } from "../components/UserInfo";
-
-/*const openEditButtonPopup = document.querySelector('.profile__button-edit');
-const popups = document.querySelectorAll('.popup');
-const popupEdit = document.querySelector('.popup_edit');
-const openAddButtonPopup = document.querySelector('.profile__button-add');
-const popupAdd = document.querySelector('.popup_add');
-const popupPic = document.querySelector('.popup_picture');
-const formElementEdit = document.querySelector('.popup__form_type_profile-edit');
-const formElementAdd = document.querySelector('.popup__form_type_image-add');
-const nameInput = document.querySelector('.popup__input-name');
-const detailInput = document.querySelector('.popup__input-detail');
-const title = document.querySelector('.profile__id-title');
-const subtitle = document.querySelector('.profile__id-subtitle');
-const cardList = document.querySelector('.pictures__board');
-const inputCardName = document.querySelector('.popup__input_card-name');
-const inputLink = document.querySelector('.popup__input-link');
-const popupOpenPic = document.querySelector('.popup__photo');
-const popupOpenTitle = document.querySelector('.popup__photo-title');
-const validationConfig = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__button",
-  inactiveButtonClass: "popup__button_disabled",
-  inputErrorClass: "popup__error",
-  errorClass: "popup__error_active",
-}*/
 
 const formElementAddValidator = new FormValidator(constantes.validationConfig, constantes.formElementAdd);
 const formElementEditValidator = new FormValidator(constantes.validationConfig, constantes.formElementEdit);
-
-/*const userInfo = new UserInfo({
-  profileNameSelector: ".profile__id-title",
-  profileJobSelector: ".profile__id-subtitle",
-});*/
 
 function openPopup(popup) {
   popup.classList.add('popup_open');
