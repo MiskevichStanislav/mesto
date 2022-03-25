@@ -1,15 +1,17 @@
 import '../../styles/index.css';
 
+import { Section } from "../components/Section";
+import * as constantes from "../utils/constants";
 import { initialCards } from "../utils/initial-card";
 import { Card } from "../components/Card";
 import { FormValidator } from "../components/FormValidator";
 
 //import { PopupWithForm } from "../components/PopupWithForm";
 //import { PopupWithImage } from "../components/PopupWithImage";
-import { Section } from "../components/Section";
+
 //import { UserInfo } from "../components/UserInfo";
 
-const openEditButtonPopup = document.querySelector('.profile__button-edit');
+/*const openEditButtonPopup = document.querySelector('.profile__button-edit');
 const popups = document.querySelectorAll('.popup');
 const popupEdit = document.querySelector('.popup_edit');
 const openAddButtonPopup = document.querySelector('.profile__button-add');
@@ -26,18 +28,17 @@ const inputCardName = document.querySelector('.popup__input_card-name');
 const inputLink = document.querySelector('.popup__input-link');
 const popupOpenPic = document.querySelector('.popup__photo');
 const popupOpenTitle = document.querySelector('.popup__photo-title');
-
 const validationConfig = {
-
   formSelector: ".popup__form",
   inputSelector: ".popup__input",
   submitButtonSelector: ".popup__button",
   inactiveButtonClass: "popup__button_disabled",
   inputErrorClass: "popup__error",
   errorClass: "popup__error_active",
-}
-const formElementAddValidator = new FormValidator(validationConfig, formElementAdd);
-const formElementEditValidator = new FormValidator(validationConfig, formElementEdit);
+}*/
+
+const formElementAddValidator = new FormValidator(constantes.validationConfig, constantes.formElementAdd);
+const formElementEditValidator = new FormValidator(constantes.validationConfig, constantes.formElementEdit);
 
 /*const userInfo = new UserInfo({
   profileNameSelector: ".profile__id-title",
@@ -62,26 +63,26 @@ function keyCloseEsc(event) {
 }
 
 function openPopupEdit() {
-  nameInput.value = title.textContent;
-  detailInput.value = subtitle.textContent;
-  formElementEditValidator.resetErrors(popupEdit);
+  constantes.nameInput.value = constantes.title.textContent;
+  constantes.detailInput.value = constantes.subtitle.textContent;
+  formElementEditValidator.resetErrors(constantes.popupEdit);
 
-  openPopup(popupEdit);
+  openPopup(constantes.popupEdit);
 }
 
 //----------------------------------Добавление фотографии PopUp----------------------------------------------------------------------------
 function openPopupAdd() {
-  formElementAdd.reset();
+  constantes.formElementAdd.reset();
 
-  formElementAddValidator.resetErrors(popupAdd);
-  openPopup(popupAdd);
+  formElementAddValidator.resetErrors(constantes.popupAdd);
+  openPopup(constantes.popupAdd);
 }
 
 function submitFormEditProfile(event) {
   event.preventDefault();
-  title.textContent = nameInput.value;
-  subtitle.textContent = detailInput.value;
-  closePopup(popupEdit);
+  constantes.title.textContent = constantes.nameInput.value;
+  constantes.subtitle.textContent = constantes.detailInput.value;
+  closePopup(constantes.popupEdit);
 }
 
 function createCard(data) {
@@ -90,15 +91,15 @@ function createCard(data) {
 }
 
 function renderCard(data) {
-  cardList.prepend(createCard(data));
+  constantes. cardList.prepend(createCard(data));
 }
 
 
 function submitFormAddImage(event) {
   event.preventDefault();
-  renderCard({name: inputCardName.value, link: inputLink.value});
+  renderCard({name: constantes.inputCardName.value, link:constantes.inputLink.value});
 
-  closePopup(popupAdd);
+  closePopup(constantes.popupAdd);
 }
 
 function addLike(event) {
@@ -110,16 +111,16 @@ function deleteCard(event) {
 }
 
 function openPopupPic(name, link) {
-  popupOpenPic.src = link;
-  popupOpenPic.alt = name;
-  popupOpenTitle.textContent = name;
+  constantes.popupOpenPic.src = link;
+  constantes.popupOpenPic.alt = name;
+  constantes.popupOpenTitle.textContent = name;
 
-  openPopup(popupPic);
+  openPopup(constantes.popupPic);
 }
 
 // -----------------------------Универсальная функция закрытия попап----------------------------
 
-popups.forEach(popup => popup.addEventListener('mousedown', event => {
+constantes.popups.forEach(popup => popup.addEventListener('mousedown', event => {
   if (event.target.classList.contains('popup_open') | event.target.classList.contains('popup__close')) {
 
     closePopup(popup);
@@ -127,10 +128,10 @@ popups.forEach(popup => popup.addEventListener('mousedown', event => {
 }))
 
 
-openEditButtonPopup.addEventListener('click', () => openPopupEdit(popupEdit));
-formElementAdd.addEventListener('submit', submitFormAddImage);
-formElementEdit.addEventListener('submit', submitFormEditProfile);
-openAddButtonPopup.addEventListener('click', () => openPopupAdd(popupAdd));
+constantes.openEditButtonPopup.addEventListener('click', () => openPopupEdit(constantes.popupEdit));
+constantes.formElementAdd.addEventListener('submit', submitFormAddImage);
+constantes.formElementEdit.addEventListener('submit', submitFormEditProfile);
+constantes.openAddButtonPopup.addEventListener('click', () => openPopupAdd(constantes.popupAdd));
 initialCards.forEach(data => renderCard(data));
 formElementAddValidator.enableValidation();
 formElementEditValidator.enableValidation();
