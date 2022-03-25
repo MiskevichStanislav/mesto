@@ -1,10 +1,13 @@
-import { initialCards } from "../utils/initial-card.js";
-import { Card } from "../components/Card.js";
-import { FormValidator } from "../components/FormValidator.js";
-//import {PopupWithForm} from "../components/PopupWithForm.js";
-//import {PopupWithImage} from "../components/PopupWithImage.js";
-//import {Section} from "../components/Section.js";
-//import {UserInfo} from "../components/UserInfo.js";
+import '../../styles/index.css';
+
+import { initialCards } from "../utils/initial-card";
+import { Card } from "../components/Card";
+import { FormValidator } from "../components/FormValidator";
+
+//import { PopupWithForm } from "../components/PopupWithForm";
+//import { PopupWithImage } from "../components/PopupWithImage";
+import { Section } from "../components/Section";
+//import { UserInfo } from "../components/UserInfo";
 
 const openEditButtonPopup = document.querySelector('.profile__button-edit');
 const popups = document.querySelectorAll('.popup');
