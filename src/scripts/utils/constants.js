@@ -1,3 +1,6 @@
+import { api } from "../components/Api";
+import { PopupWithForm } from "../components/PopupWithForm";
+
 export const openEditButtonPopup = document.querySelector('.profile__button-edit');
 //export const popups = document.querySelectorAll('.popup');
 export const popupEdit = document.querySelector('.popup_edit');
@@ -15,6 +18,8 @@ export const cardList = document.querySelector('.pictures__board');
 //export const inputLink = document.querySelector('.popup__input-link');
 export const popupOpenPic = document.querySelector('.popup__photo');
 export const popupOpenTitle = document.querySelector('.popup__photo-title');
+
+
 export const validationConfig = {
   formSelector: ".popup__form",
   inputSelector: ".popup__input",
