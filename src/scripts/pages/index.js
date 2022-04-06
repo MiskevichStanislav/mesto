@@ -26,9 +26,12 @@ Promise.all([api.getProfile(), api.getCards()])
   })
 
 const section = new Section(renderCard, '.pictures__board');
+
 const popupWithForm = new PopupWithForm('.popup_add', submitFormAddImage);
 const popupEditProfile = new PopupWithForm('.popup_edit', submitFormEditProfile);
+
 const popupWithImage = new PopupWithImage('.popup_picture');
+
 //const confirmPopup = new PopupWithForm('.popup_type_delete-confirm', () => { api.deleteCard(id) })
 const formElementAddValidator = new FormValidator(constantes.validationConfig, constantes.formElementAdd);
 const formElementEditValidator = new FormValidator(constantes.validationConfig, constantes.formElementEdit);
@@ -61,22 +64,16 @@ function submitFormEditProfile(data) {
 }
 
 function submitFormAddImage(data) {
-  section.addItem(createCard({
-    name: data.card,
-    link: data.link
-  }));
-
   api.addCard(data.card, data.link)
-    .then(res => {
-      const card = createCard({
-        name: res.name,
-        link: res.link,
-        likes: res.likes,
-        id: res._id
-      })
-      popupWithForm.close();
+  .then((res) => {
+    section.addItem(createCard(res));
+    popupWithForm.close();
+  })
+  .catch((err) => {
+    err.then((res) => {
+      alert(res.message)
     })
-
+  })
 }
 
 function createCard(data) {
@@ -89,7 +86,30 @@ function createCard(data) {
     () => {
       popupWithImage.open(data.name, data.link);
     },
-
+    userId,
+    (id) => {
+      if (card.isLiked()) {
+        api.deleteLike(id)
+          .then((res) => {
+            card.setLikes(res.likes);
+          })
+          .catch((err) => {
+            err.then((res) => {
+              alert(res.message)
+            })
+          })
+      } else {
+        api.addLike(id)
+          .then((res) => {
+            card.setLikes(res.likes);
+          })
+          .catch((err) => {
+            err.then((res) => {
+              alert(res.message)
+            })
+          })
+      }
+    }
     // (id) => {
     //   confirmPopup.open();
     //   confirmPopup.changeSubmitHandler(() => {
@@ -99,13 +119,13 @@ function createCard(data) {
     //       })
     //   })
     // }
-  )
+  )            //
   return card.generateCard();
 }
 
 
 function renderCard(data) {
-  constantes.cardList.prepend(createCard(data));
+  section.addItem(createCard(data));
 }
 
 constantes.openEditButtonPopup.addEventListener('click', openPopupEdit);
@@ -115,7 +135,7 @@ constantes.openAddButtonPopup.addEventListener('click', openPopupAdd);
 formElementAddValidator.enableValidation();
 formElementEditValidator.enableValidation();
 
-section.rendererItems();
+
 
 //confirmPopup.setEventListeners();
 popupWithForm.setEventListeners();

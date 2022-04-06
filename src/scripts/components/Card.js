@@ -1,13 +1,15 @@
 export class Card {
-  constructor(data, selectorTemplateCard, handleImageClick) {   //handleDeleteClick
+  constructor(data, selectorTemplateCard, handleImageClick, userId, handleLikeClick) {   //handleDeleteClick
     this._name = data.name;
     this._link = data.link;
-    // this._likes = data.likes;
-    // this._id = data.id;
-
+    this._likes = data.likes;
+    this._userId = userId;
+    this._ownerId = data.owner._id;
+    this._id = data._id;
     this._selectorTemplateCard = selectorTemplateCard;
     this._handleImageClick = handleImageClick;
-    // this._handleDeleteClick = handleDeleteClick;
+    this._handleLikeClick = handleLikeClick;
+    //this._handleDeleteClick = handleDeleteClick;
   }
   //создaет копию template
   _getTemplate() {
@@ -22,26 +24,34 @@ export class Card {
   generateCard() {
     this._element = this._getTemplate();
     this._element.querySelector(".pictures__title").textContent = this._name;
+    this._likeButton = this._element.querySelector('.pictures__like');
     this._image = this._element.querySelector(".pictures__images");
     this._image.src = this._link;
     this._image.alt = this._name;
     this._setListeners();
-    //this._setLikes();
+    this.setLikes(this._likes);
     // if (this._ownerId !== this._userId) {
     //   this._element.querySelector('.pictures__delete').style.display = 'none';
     // };
 
     return this._element;
   }
+
+  _fillLike() {
+    this._likeButton.classList.add('pictures__like_active');
+  };
+
+  _removeLike() {
+    this._likeButton.classList.remove('pictures__like_active');
+  };
   //   ОБРАБОТЧИКИ ПОПАП ЛАЙК КОРЗИНА
-  _setLikes() {
-    const likeCountElement = this._element.querySelector(".pictures__like-count")
-    likeCountElement.textContent = this._likes.length
+  isLiked() {
+    return this._likes.find(user => user._id === this._userId);
   }
 
-  setLikes(newLikes) {
+   setLikes(newLikes) {
     this._likes = newLikes;
-    const likeCountElement = this._element.querySelector('.elements__number-likes');
+    const likeCountElement = this._element.querySelector('.pictures__like-count');
     likeCountElement.textContent = this._likes.length;
     if (this.isLiked()) {
       this._fillLike()
@@ -57,7 +67,7 @@ export class Card {
 
     this._element.addEventListener("click", (evt) => {
       if (evt.target === this._element.querySelector(".pictures__like")) {
-        evt.target.classList.toggle("pictures__like_active");
+        this._handleLikeClick(this._id);
       } else if (evt.target === this._element.querySelector(".pictures__delete")) {
         this._element.remove();
       }

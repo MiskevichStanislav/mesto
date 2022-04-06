@@ -58,8 +58,46 @@ class Api {
       .then(this._checkResponse);
   }
 
+  addLike(id) {
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+      method: 'PUT',
+      headers: this._headers
+    })
+      .then(this._checkResponse)
+  }
 
+  deleteLike(id) {
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+      method: 'DELETE',
+      headers: this._headers,
+    })
+      .then(this._checkResponse)
+  }
+
+  ditAvatar(avatar, buttonSubmit) {
+    this.renderLoading(true, buttonSubmit);
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar
+      })
+    })
+      .then(this._checkResponse)
+  }
+
+  renderLoading(isLoading, { buttonSubmit, textDefault }) {
+    if (isLoading) {
+      buttonSubmit.textContent = 'Сохранение...';
+    } else {
+      buttonSubmit.textContent = textDefault;
+    }
+  }
 }
+
+
+
+
 
 export const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-39',
