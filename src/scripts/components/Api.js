@@ -26,7 +26,8 @@ class Api {
       .then(this._checkResponse)
   }
 
-  editProfile(name, about) {
+  editProfile(name, about, buttonSubmit) {
+    this.renderLoading(true, buttonSubmit)
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
@@ -38,7 +39,8 @@ class Api {
       .then(this._checkResponse);
   }
 
-  addCard(name, link) {
+  addCard(name, link, buttonSubmit) {
+    this.renderLoading(true, buttonSubmit)
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
@@ -51,11 +53,11 @@ class Api {
 
   }
   deleteCard(id) {
-    return fetch(`${this._baseUrl}cards/${id}`, {
-      method: "DELETE",
-      headers: this._headers,
+    return fetch(`${this._baseUrl}/cards/${id}`, {
+      method: 'DELETE',
+      headers: this._headers
     })
-      .then(this._checkResponse);
+      .then(this._checkResponse)
   }
 
   addLike(id) {
@@ -74,8 +76,8 @@ class Api {
       .then(this._checkResponse)
   }
 
-  ditAvatar(avatar, buttonSubmit) {
-    this.renderLoading(true, buttonSubmit);
+  editAvatar(avatar, buttonSubmit) {
+    this.renderLoading(true, buttonSubmit)
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,
@@ -86,18 +88,14 @@ class Api {
       .then(this._checkResponse)
   }
 
-  renderLoading(isLoading, { buttonSubmit, textDefault }) {
+  renderLoading(isLoading, { buttonSubmit, titleButton }) {
     if (isLoading) {
       buttonSubmit.textContent = 'Сохранение...';
     } else {
-      buttonSubmit.textContent = textDefault;
+      buttonSubmit.textContent = titleButton;
     }
   }
 }
-
-
-
-
 
 export const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-39',

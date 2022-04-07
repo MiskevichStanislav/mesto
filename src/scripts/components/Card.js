@@ -1,5 +1,5 @@
 export class Card {
-  constructor(data, selectorTemplateCard, handleImageClick, userId, handleLikeClick) {   //handleDeleteClick
+  constructor(data, selectorTemplateCard, handleImageClick, userId, handleLikeClick, handleDeleteClick) {
     this._name = data.name;
     this._link = data.link;
     this._likes = data.likes;
@@ -9,8 +9,8 @@ export class Card {
     this._selectorTemplateCard = selectorTemplateCard;
     this._handleImageClick = handleImageClick;
     this._handleLikeClick = handleLikeClick;
-    //this._handleDeleteClick = handleDeleteClick;
-  }
+    this._handleDeleteClick = handleDeleteClick;
+  };
   //создaет копию template
   _getTemplate() {
     const cardElement = document
@@ -19,7 +19,7 @@ export class Card {
       .querySelector(".pictures__item")
       .cloneNode(true);
     return cardElement;
-  }
+  };
   //создает карточку
   generateCard() {
     this._element = this._getTemplate();
@@ -30,9 +30,9 @@ export class Card {
     this._image.alt = this._name;
     this._setListeners();
     this.setLikes(this._likes);
-    // if (this._ownerId !== this._userId) {
-    //   this._element.querySelector('.pictures__delete').style.display = 'none';
-    // };
+    if (this._ownerId !== this._userId) {
+      this._element.querySelector('.pictures__delete').style.display = 'none';
+    };
 
     return this._element;
   }
@@ -49,7 +49,7 @@ export class Card {
     return this._likes.find(user => user._id === this._userId);
   }
 
-   setLikes(newLikes) {
+  setLikes(newLikes) {
     this._likes = newLikes;
     const likeCountElement = this._element.querySelector('.pictures__like-count');
     likeCountElement.textContent = this._likes.length;
@@ -60,16 +60,18 @@ export class Card {
     }
   }
 
+  deleteCard() {
+    this._element.remove();
+    this._element = null;
+  }
 
   _setListeners() {
     this._image.addEventListener("click", this._handleImageClick);
-    //this._element.querySelector('.pictures__delete').addEventListener('click', () => this._handleDeleteClick(this._id));
+    this._element.querySelector('.pictures__delete').addEventListener('click', () => this._handleDeleteClick(this._id));
 
     this._element.addEventListener("click", (evt) => {
       if (evt.target === this._element.querySelector(".pictures__like")) {
         this._handleLikeClick(this._id);
-      } else if (evt.target === this._element.querySelector(".pictures__delete")) {
-        this._element.remove();
       }
     })
   }
