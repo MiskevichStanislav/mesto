@@ -1,13 +1,13 @@
-import '../../styles/index.css';
+import '../pages/index.css';
 
-import * as constantes from "../utils/constants";
-import { Card } from "../components/Card";
-import { FormValidator } from "../components/FormValidator";
-import { Section } from "../components/Section";
-import { PopupWithForm } from "../components/PopupWithForm"
-import { PopupWithImage } from "../components/PopupWithImage";
-import { UserInfo } from "../components/UserInfo";
-import { api } from "../components/Api";
+import * as constantes from "../scripts/utils/constants";
+import { Card } from "../scripts/components/Card";
+import { FormValidator } from "../scripts/components/FormValidator";
+import { Section } from "../scripts/components/Section";
+import { PopupWithForm } from "../scripts/components/PopupWithForm"
+import { PopupWithImage } from "../scripts/components/PopupWithImage";
+import { UserInfo } from "../scripts/components/UserInfo";
+import { api } from "../scripts/components/Api";
 
 let userId;
 let urlAvatar;
@@ -69,7 +69,7 @@ function submitFormEditProfile(data, buttonSubmit) {
   const { name, detail } = data;
   api.editProfile(name, detail, buttonSubmit)
     .then(() => {
-      userInfo.setUserInfo(name, detail);
+      userInfo.setUserInfo(name, detail, urlAvatar);
       popupEditProfile.close();
     })
     .catch((err) => {
