@@ -144,6 +144,10 @@ function createCard(data) {
               console.log(res.message)
             })
           })
+
+          .finally(() => {
+            popupDeleteCard.renderLoading(false);
+          })
       });
     }
   )
