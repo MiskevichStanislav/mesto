@@ -26,8 +26,7 @@ export class Api {
       .then(this._checkResponse)
   }
 
-  editProfile(name, about, buttonSubmit) {
-    this.renderLoading(true, buttonSubmit)
+  editProfile(name, about) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
@@ -39,8 +38,7 @@ export class Api {
       .then(this._checkResponse);
   }
 
-  addCard(name, link, buttonSubmit) {
-    this.renderLoading(true, buttonSubmit)
+  addCard(name, link) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
@@ -76,8 +74,7 @@ export class Api {
       .then(this._checkResponse)
   }
 
-  editAvatar(avatar, buttonSubmit) {
-    this.renderLoading(true, buttonSubmit)
+  editAvatar(avatar) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,
@@ -86,14 +83,6 @@ export class Api {
       })
     })
       .then(this._checkResponse)
-  }
-
-  renderLoading(isLoading, { buttonSubmit, titleButton }) {
-    if (isLoading) {
-      buttonSubmit.textContent = 'Сохранение...';
-    } else {
-      buttonSubmit.textContent = titleButton;
-    }
   }
 }
 

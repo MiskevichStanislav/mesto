@@ -1,9 +1,9 @@
 export const openEditButtonPopup = document.querySelector('.profile__button-edit');
-export const popupEdit = document.querySelector('.popup_edit');
-export const popupAvatar = document.querySelector('.popup_edit-avatar');
+//export const popupEdit = document.querySelector('.popup_edit');
+//export const popupAvatar = document.querySelector('.popup_edit-avatar');
 export const openAddButtonPopup = document.querySelector('.profile__button-add');
 export const buttonOpenPopupEditAvatar = document.querySelector('.profile__id-photo');
-export const popupAdd = document.querySelector('.popup_add');
+//export const popupAdd = document.querySelector('.popup_add');
 export const formElementEdit = document.querySelector('.popup__form_type_profile-edit');
 export const formElementAdd = document.querySelector('.popup__form_type_image-add');
 export const formAvatarEdit = document.querySelector('.popup__form_type_avatar-edit');

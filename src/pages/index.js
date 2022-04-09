@@ -10,7 +10,6 @@ import { UserInfo } from "../scripts/components/UserInfo";
 import { api } from "../scripts/components/Api";
 
 let userId;
-let urlAvatar;
 
 const section = new Section(renderCard, '.pictures__board');
 
@@ -28,31 +27,30 @@ const formAvatarEditValidator = new FormValidator(constantes.validationConfig, c
 const userInfo = new UserInfo({
   profileNameSelector: '.profile__id-title',
   profileDetailSelector: '.profile__id-subtitle',
-  avatarSelector: '.profile__id-photo'
+  avatarSelector: '.profile__avatar'
 });
 
 function openPopupEdit() {
   const { name, detail } = userInfo.getUserInfo();
   constantes.nameInput.value = name;
   constantes.detailInput.value = detail;
-  formElementEditValidator.resetErrors(constantes.popupEdit);
+  formElementEditValidator.resetErrors();
   popupEditProfile.open();
 }
 
 function openPopupAdd() {
-  formElementAddValidator.resetErrors(constantes.popupAdd);
+  formElementAddValidator.resetErrors();
   popupWithForm.open();
 }
-function OpenPopupEditAvatar(){
-  formAvatarEditValidator.resetErrors(constantes.popupAvatar);
+function OpenPopupEditAvatar() {
+  formAvatarEditValidator.resetErrors();
   popupEditAvatar.open();
 }
 
-function submitEditAvatarForm(data, buttonSubmit) {
-  api.editAvatar(data.link, buttonSubmit)
+function submitEditAvatarForm({ link }) {
+  api.editAvatar(link)
     .then((res) => {
       userInfo.setUserInfo(res.name, res.about, res.avatar);
-      urlAvatar = res.avatar;
       popupEditAvatar.close();
     })
     .catch((err) => {
@@ -61,15 +59,14 @@ function submitEditAvatarForm(data, buttonSubmit) {
       })
     })
     .finally(() => {
-      api.renderLoading(false, buttonSubmit);
+      popupEditAvatar.renderLoading(false);
     })
 };
 
-function submitFormEditProfile(data, buttonSubmit) {
-  const { name, detail } = data;
-  api.editProfile(name, detail, buttonSubmit)
-    .then(() => {
-      userInfo.setUserInfo(name, detail, urlAvatar);
+function submitFormEditProfile({ name, detail }) {
+  api.editProfile(name, detail)
+    .then((res) => {
+      userInfo.setUserInfo(res.name, res.about, res.avatar);
       popupEditProfile.close();
     })
     .catch((err) => {
@@ -78,29 +75,28 @@ function submitFormEditProfile(data, buttonSubmit) {
       })
     })
     .finally(() => {
-      api.renderLoading(false, buttonSubmit);
+      popupEditProfile.renderLoading(false);
     })
 }
 
-function submitFormAddImage(data, buttonSubmit) {
-  api.addCard(data.card, data.link, buttonSubmit)
-  .then((res) => {
-    section.addItem(createCard(res));
-    popupWithForm.close();
-  })
-  .catch((err) => {
-    err.then((res) => {
-      alert(res.message)
+function submitFormAddImage({ card, link }) {
+  api.addCard(card, link)
+    .then((res) => {
+      section.addItem(createCard(res));
+      popupWithForm.close();
     })
-  })
-  .finally(() => {
-    api.renderLoading(false, buttonSubmit);
-  })
+    .catch((err) => {
+      err.then((res) => {
+        alert(res.message)
+      })
+    })
+    .finally(() => {
+      popupWithForm.renderLoading(false);
+    })
 }
 
 function createCard(data) {
   const card = new Card(
-
     data,
 
     '.template-card',
@@ -155,14 +151,13 @@ function createCard(data) {
 }
 
 function renderCard(data) {
-section.addItem(createCard(data));
+  section.addItem(createCard(data));
 }
 
 Promise.all([api.getProfile(), api.getCards()])
   .then(([res, cards]) => {
     userInfo.setUserInfo(res.name, res.about, res.avatar);
     userId = res._id;
-    urlAvatar = res.avatar;
     section.rendererItems(cards);
   })
   .catch((err) => {
